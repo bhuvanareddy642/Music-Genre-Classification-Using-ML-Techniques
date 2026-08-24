@@ -1,4 +1,3 @@
-
 <h1 style="text-align:center">
     Music Genre Classification Using Machine Learning techniques
 </h1>
@@ -67,7 +66,7 @@ We will be using the "Top 10,000 Songs of All Time" playlist by Acclaimed Music 
 
 Below is 5 samples of the collected data used in the classification models.
 
-![spotify-data](images/spotify-data.png)
+![spotify-data](spotify-data.png)
 
 The data collection process, further detailed in the notebook, consists of making successive calls to extract the URIs of individual tracks from the playlist, utilizing those URIs to extract artist URIs where genres are held, then indexing into the json response object of each call to extract song features with ".get_audio_features()" in order to cast it as a data frame.
 
@@ -91,7 +90,7 @@ This model performs better than the base case of 0.125. This will serve as a ben
 
 **Dense Neural Netowrk Model Accuracy: 0.515**
 
-![spotify-data](images/spotify-dnn.png)
+![spotify-data](spotify-dnn.png)
 
 #### Model Performance Summary
 Below are the final performance metrics for both models that were tested on the tabular audio feature data.
@@ -118,21 +117,21 @@ Audio data can be a challenging format of data to work with, as it is disorganiz
     - The bit depth refers to how precise the amplitude values are, determining the dynamic range of an audio signal (i.e. 16-bit depth can represent 65,536 unique numbers, resulting in approx. 96dB of dynamic range).
 - To simplify, the sampling rate essentially controls the resolution of the x-axis and the bit depth controls the resolution of the y-axis.
 
-![Waveform](images/waveform.png)
+![Waveform](waveform.png)
 
 ### Frequency Spectrum
 - The spectrum of a waveform shows the magnitude (in dB) of the signal per frequency.
 - Notice there is no time component here, rather the magnitude (dB) is with reference to frequencies of the entire audio signal (in this case 30 sec clip).
 - While the plot below shows the spectrum for the entire signal, we will be using this concept to take the spectrum of small pieces of the signal to reintroduce a time component when we create spectrograms next.
 
-![Spectrum](images/spectrum.png)
+![Spectrum](spectrum.png)
 
 ### Spectrogram
 - A spectrogram is the combination of a waveform and spectrum plot, resulting in frequency magnitude (in dB) over time.
 - It has been scaled so that 0 dB is the maximum value.
 - Notice how patterns emerge in the light-green and yellow, looking like diagonal lines that move up and down. These patterns correspond to specific attributes of the music, such as melodies.
 
-![Spectrogram](images/spectrogram.png)
+![Spectrogram](spectrogram.png)
 
 ### Mel-Spectrogram
 - The Mel-spectrogram is similar to a spectrogram, except that the magnitudes have been scaled to a "Mel-scale".
@@ -141,11 +140,11 @@ Audio data can be a challenging format of data to work with, as it is disorganiz
 - Additionally, the resolution can be drastically reduced and still retain important information. This can be thought of as a form of compressing the audio data.
 - Below is a much higher resolution Mel-spectrogram than will be used in the model.
 
-![Mel Spectrogram](images/mel-spectrogram.png)
+![Mel Spectrogram](mel-spectrogram.png)
 
 Below is a sample of a Mel-spectrogram that will be input into the model. It is 3 seconds long and only utilizes 12 MFCCs (the Mel-spectrogram above was using 128!).
 
-![MFCC (Mel Spectrogram)](images/mfcc.png)
+![MFCC (Mel Spectrogram)](mfcc.png)
 
 ### Preprocessing Summary
 Data collection and preprocessing consist of three steps:
@@ -179,7 +178,7 @@ During this process, the audio files are split into 3-second segments. Because n
 - As can be seen below, the model begins overfitting just past 100 epochs and reaches its optimal performance somewhere between 150 and 200 epochs.
 
 **DNN Model Accuracy: 0.578**
-![DNN](images/dnn.png)
+![DNN](dnn.png)
 
 #### Convolutional Neural Network (Without Regularization)
 - A Convolutional Neural Network (CNN) consists of a combination of convolution layers and dense layers.
@@ -189,7 +188,7 @@ During this process, the audio files are split into 3-second segments. Because n
 - As can be seen below, the model begins overfitting very early on, just past 20 epochs. It learns much faster and better than the DNN and reaches its optimal performance somewhere between 50 and 100 epochs.
 
 **CNN-1 Model Accuracy: 0.691**
-![CNN-1](images/cnn-1.png)
+![CNN-1](cnn-1.png)
 
 #### Convolutional Neural Network (With Regularization)
 - A Convolutional Neural Network (CNN) consists of a combination of convolution layers and dense layers.
@@ -202,7 +201,7 @@ During this process, the audio files are split into 3-second segments. Because n
 - As can be seen below, the model begins overfitting very early on, just past 20 epochs. However, because of the regularization technique of implementing dropout, the learning speed is traded off with continued improvement. Because of this, its optimal performance is reached somewhere between 200 and 250 epochs.
 
 **CNN-2 Model Accuracy: 0.801**
-![CNN-2](images/cnn-2.png)
+![CNN-2](cnn-2.png)
 
 #### Convolutional Neural Network (With Regularization and Data Augmentation)
 - This model is exactly the same as the previous CNN with regularization techniques implemented, with an addition of a data augmentation technique.
@@ -211,7 +210,7 @@ During this process, the audio files are split into 3-second segments. Because n
 - As can be seen below, the model begins overfitting very early on, similar to the other CNNs. It also continues improving with regularization. The difference is that it learns a little slower, but keeps a closer range between the train and test data, allowing for an increase in overall performance.
 
 **CNN-3 Model Accuracy: 0.838**
-![CNN-3](images/cnn-3.png)
+![CNN-3](cnn-3.png)
 
 ### Model Performance Summary
 Below are the final accuracy scores for all models that were tested.
